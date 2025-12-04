@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Advent of Code",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/day${input:dayNumber}_part${input:partNumber}",
+            "args": [
+                "${workspaceFolder}/day${input:dayNumber}/${input:fileName}"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "CMake: build"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "dayNumber",
+            "type": "promptString",
+            "description": "Enter the day number (e.g., 01)"
+        },
+        {
+            "id": "partNumber",
+            "type": "pickString",
+            "description": "Select the part",
+            "options": [
+                "1",
+                "2"
+            ],
+            "default": "1"
+        },
+        {
+            "id": "fileName",
+            "type": "pickString",
+            "description": "Select the input file",
+            "options": [
+                "input.txt",
+                "example.txt"
+            ],
+            "default": "input.txt"
+        }
+    ]
+}
