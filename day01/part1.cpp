@@ -17,9 +17,22 @@ int main(int argc, char* argv[]) {
     
     std::cout << "Solving Day 01 Part 1..." << std::endl;
 
+    int position = 50;
+    int size = 100;
+    int numberOfZeros = 0;
     std::string line;
     while (std::getline(input, line)) {
-        // Part 1 logic here
+        int value = std::stoi(line.substr(1));
+        if (line[0] == 'L') {
+            position = (((position - value) % size) + size) % size;
+        }
+        else {
+            position = (position + value) % size;
+        }
+        if (position == 0) {
+            numberOfZeros++;
+        }
+        std::cout << line << "\tnumberOfZeros: " << numberOfZeros << std::endl;
     }
 
     input.close();
