@@ -17,10 +17,69 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Solving Day 01 Part 2..." << std::endl;
 
+    // int position = 50;
+    // int size = 100;
+    // int numberOfZeros = 0;
+    // std::string line;
+    // while (std::getline(input, line)) {
+    //     int prevPosition = position;
+    //     int value = std::stoi(line.substr(1));
+    //     int numFullRotations = value / size;
+    //     numberOfZeros += numFullRotations;
+
+    //     int remainder = value % size;
+    //     if (line[0] == 'L') {
+    //         position -= remainder;
+    //         if (position < 0) {
+    //             position += size;
+    //             numberOfZeros++;
+    //         }
+    //     }
+    //     else {
+    //         position += remainder;
+    //         if (position >= size) {
+    //             position -= size;
+    //             numberOfZeros++;
+    //         }
+    //     }
+    //     std::cout << line << "\t" << prevPosition << "->" << position << "\tnumberOfZeros: " << numberOfZeros << std::endl;
+    // }
+
+    // brute force?
+
+    int position = 50;
+    int size = 100;
+    int numberOfZeros = 0;
     std::string line;
     while (std::getline(input, line)) {
-        // Part 2 logic here
+        int prevPosition = position;
+        int value = std::stoi(line.substr(1));
+
+        if (line[0] == 'L') {
+            for (int i = 0; i < value; i++) {
+                position--;
+                if (position == 0) {
+                    numberOfZeros++;
+                }
+                if (position < 0) {
+                    position += size;
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < value; i++) {
+                position++;
+                if (position == 100) {
+                    numberOfZeros++;
+                    position = 0;
+                }
+            }
+        }
+        std::cout << line << "\t" << prevPosition << "->" << position << "\tnumberOfZeros: " << numberOfZeros << std::endl;
     }
+
+    // 5765 = too low?
+    // 6239 = too high
 
     input.close();
     return 0;
